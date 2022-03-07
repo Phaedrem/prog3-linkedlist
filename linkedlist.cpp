@@ -47,6 +47,16 @@ bool LinkedList::addNode(int id, string* info){
             newNode->prev = NULL;
             newNode->next = NULL;
             success = true; 
+        }else{
+            if(id < head->data.id){
+                Node *newNode = new Node;
+                newNode->data.id = id;
+                newNode->data.data = *info; 
+                newNode->prev = NULL;
+                newNode->next = head;
+                head->prev = newNode;
+                head = newNode;
+            }
         }
     }
 

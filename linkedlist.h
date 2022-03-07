@@ -30,7 +30,10 @@ public:
 private:
     Node *head;
 
-
+    void createNode(int, string*, Node*);
+    void addHead(int, string*, Node*);
+    void addTail(int, string*, Node*);
+    void addMiddle(int, string*, Node*);
 
 
 

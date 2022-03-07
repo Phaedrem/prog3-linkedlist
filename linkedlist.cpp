@@ -7,6 +7,10 @@ Purpose: Introduction to Linked Lists
 #include "linkedlist.h"
 
 
+/*********************************
+CONSTRUCTORS / DESTRUCTORS
+*********************************/
+
 LinkedList::LinkedList(){
     head = NULL; 
 }
@@ -21,8 +25,32 @@ LinkedList::~LinkedList(){
     head = NULL; 
 }
 
+/*********************************
+PRIVATE
+*********************************/
+
+
+
+
+/*********************************
+PUBLIC
+*********************************/
+
 bool LinkedList::addNode(int id, string* info){
-    return true;
+    bool success = false;
+    if((id > 0) && (info->length() > 0)){
+        if(head == NULL){
+            Node *newNode = new Node;
+            newNode->data.id = id;
+            newNode->data.data = *info; 
+            head = newNode;
+            newNode->prev = NULL;
+            newNode->next = NULL;
+            success = true; 
+        }
+    }
+
+    return success;
 }
 
 bool LinkedList::deleteNode(int id){
@@ -37,7 +65,7 @@ void LinkedList::printList(bool direction){
     if(head != NULL){
         int i = 1;
         Node *current = head;
-        while(current != NULL){
+        while(current != NULL){ // TEST IF != is necessary
             cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
             i++;
             current = current->next;

@@ -123,7 +123,19 @@ bool LinkedList::deleteNode(int id){
 }
 
 bool LinkedList::getNode(int id, Data* returnBox){
-    return true;
+    bool success = false;
+    if(head != NULL){
+        Node *current = head;
+        while(id != current->data.id && current->next != NULL){
+            current = current->next;
+        }
+        if(id == current->data.id){
+            returnBox->data = current->data.data;
+            returnBox->id = current->data.id;
+            success = true;
+        }
+    }
+    return success;
 }
 
 void LinkedList::printList(bool direction){

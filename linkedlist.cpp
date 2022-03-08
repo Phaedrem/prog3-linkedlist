@@ -29,7 +29,24 @@ LinkedList::~LinkedList(){
 PRIVATE
 *********************************/
 
+void LinkedList::createNode(int id, string* info, Node* newNode){
+    newNode->data.id = id;
+    newNode->data.data = *info;
+}
 
+void LinkedList::addHead(int id, string* info, Node* current){
+    Node *newNode = new Node;
+    createNode(id, info, newNode);
+    if(current == NULL){
+        newNode->prev = NULL;
+        newNode->next = NULL;
+    }else{
+        newNode->prev = NULL;
+        newNode->next = current;
+        current->prev = newNode;
+    }
+    head = newNode;
+}
 
 
 /*********************************
@@ -39,27 +56,11 @@ PUBLIC
 bool LinkedList::addNode(int id, string* info){
     bool success = false;
     if((id > 0) && (info->length() > 0)){
-        if(head == NULL){
-            Node *newNode = new Node;
-            newNode->data.id = id;
-            newNode->data.data = *info; 
-            head = newNode;
-            newNode->prev = NULL;
-            newNode->next = NULL;
+        if(head == NULL || (id < head->data.id && head->prev == NULL)){ //New Head
+            addHead(id, info, head);
             success = true; 
-        }else{
-            if(id < head->data.id){
-                Node *newNode = new Node;
-                newNode->data.id = id;
-                newNode->data.data = *info; 
-                newNode->prev = NULL;
-                newNode->next = head;
-                head->prev = newNode;
-                head = newNode;
-            }
         }
     }
-
     return success;
 }
 
@@ -75,7 +76,7 @@ void LinkedList::printList(bool direction){
     if(head != NULL){
         int i = 1;
         Node *current = head;
-        while(current != NULL){ // TEST IF != is necessary
+        while(current){ // TEST IF != is necessary
             cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
             i++;
             current = current->next;

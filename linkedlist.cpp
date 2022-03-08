@@ -16,13 +16,7 @@ LinkedList::LinkedList(){
 }
 
 LinkedList::~LinkedList(){
-    Node *current = head;
-    while(current != NULL){
-        Node *next = current->next;
-        delete current;
-        current = next; 
-    }
-    head = NULL; 
+    clearList(); 
 }
 
 /*********************************
@@ -168,7 +162,18 @@ int LinkedList::getCount(){
 }
 
 bool LinkedList::clearList(){
-    return true;
+    bool success = false;
+    if(head != NULL){
+        Node *current = head;
+        while(current != NULL){
+            Node *next = current->next;
+            delete current;
+            current = next; 
+        }
+        head = NULL;
+        success = false;
+    }
+    return success;
 }
 
 bool LinkedList::exists(int id){

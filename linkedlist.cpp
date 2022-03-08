@@ -179,11 +179,21 @@ bool LinkedList::clearList(){
             current = next; 
         }
         head = NULL;
-        success = false;
+        success = true;
     }
     return success;
 }
 
 bool LinkedList::exists(int id){
-    return true;
+    bool exists = false;
+    if(head != NULL){
+        Node *current = head;
+        while(id != current->data.id && current->next != NULL){
+            current = current->next;
+        }
+        if(id == current->data.id){
+            exists = true;
+        }
+    }
+    return exists;
 }

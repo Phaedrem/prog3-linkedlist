@@ -127,6 +127,9 @@ bool LinkedList::getNode(int id, Data* returnBox){
             returnBox->data = current->data.data;
             returnBox->id = current->data.id;
             success = true;
+        }else{
+            returnBox->data = "";
+            returnBox->id = -1;
         }
     }
     return success;

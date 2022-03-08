@@ -91,9 +91,35 @@ bool LinkedList::addNode(int id, string* info){
     }
     return success;
 }
-
-bool LinkedList::deleteNode(int id){
-    return true;
+ 
+bool LinkedList::deleteNode(int id){ 
+    bool success = false;
+    if(head != NULL){
+        Node *current = head;
+        while(id != current->data.id && current->next != NULL){
+            current = current->next;
+        }
+        if(id == current->data.id && current->prev == NULL && current->next == NULL){ // if theres only one node
+            head = NULL;
+            delete current;
+            success = true;
+        }else if(id == current->data.id && current->prev == NULL){ // if node is the head
+            current->next->prev = NULL;
+            head = current->next;
+            delete current;
+            success = true;
+        }else if(id == current->data.id && current->next == NULL){ // if node is the tail
+            current->prev->next = NULL;
+            delete current;
+            success = true;
+        }else if(id == current->data.id){ // if node is in the middle
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            delete current;
+            success = true;
+        }// if node doesn't exist
+    }
+    return success;
 }
 
 bool LinkedList::getNode(int id, Data* returnBox){
@@ -104,7 +130,7 @@ void LinkedList::printList(bool direction){
     Node *current = head;
     int i = 1;
     if(head != NULL && !direction){ //forward
-        cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
+        cout << i << ": " <<head->data.id << " : " << head->data.data << endl;
         i++;
         while(current = current->next){
             cout << i << ": " <<current->data.id << " : " << current->data.data << endl;

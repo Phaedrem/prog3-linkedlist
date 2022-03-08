@@ -158,7 +158,15 @@ void LinkedList::printList(bool direction){
 }
 
 int LinkedList::getCount(){
-    return 0;
+    int i = 0;
+    if(head != NULL){
+        i++;
+        Node *current = head;
+        while(current = current->next){
+            i++;
+        }
+    }
+    return i;
 }
 
 bool LinkedList::clearList(){

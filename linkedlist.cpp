@@ -103,7 +103,7 @@ void LinkedList::printList(bool direction){
     if(head != NULL){
         int i = 1;
         Node *current = head;
-        while(current){ // TEST IF != is necessary
+        while(current){
             cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
             i++;
             current = current->next;

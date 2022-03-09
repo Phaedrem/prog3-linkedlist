@@ -182,9 +182,9 @@ bool LinkedList::clearList(){
     if(head != NULL){
         Node *current = head;
         while(current != NULL){
-            Node *next = current->next;
+            head = current->next;
             delete current;
-            current = next; 
+            current = head; 
         }
         head = NULL;
         success = true;

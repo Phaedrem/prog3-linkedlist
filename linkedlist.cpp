@@ -53,10 +53,10 @@ void LinkedList::addTail(int id, string* info, Node* current){
 void LinkedList::addMiddle(int id, string* info, Node* current){
     Node *newNode = new Node;
     fillNode(id, info, newNode);
-    newNode->prev = current;
-    newNode->next = current->next;
-    current->next->prev = newNode;
-    current->next = newNode;
+    newNode->prev = current->prev;
+    newNode->next = current;
+    current->prev->next = newNode;
+    current->prev = newNode;
 }
 
 
@@ -72,12 +72,13 @@ bool LinkedList::addNode(int id, string* info){
             success = true; 
         }else{
             Node *current = head;
-            while(current->next != NULL && id > current->next->data.id){
+            while(id > current->data.id && current->next != NULL){
                 current = current->next;
-            }if(current->next == NULL && id > current->data.id){ // New Tail
+            }
+            if(id > current->data.id && current->next == NULL){ // New Tail
                 addTail(id, info, current);
                 success = true; 
-            }else if(id > current->data.id && id < current->next->data.id){ // New Middle
+            }else if(id < current->data.id){ // New Middle
                 addMiddle(id, info, current);
                 success = true;
             }

@@ -166,15 +166,15 @@ void LinkedList::printList(bool direction){
 }
 
 int LinkedList::getCount(){
-    int i = 0;
+    int nodeCount = 0;
     if(head != NULL){
-        i++;
+        nodeCount++;
         Node *current = head;
         while(current = current->next){
-            i++;
+            nodeCount++;
         }
     }
-    return i;
+    return nodeCount;
 }
 
 bool LinkedList::clearList(){

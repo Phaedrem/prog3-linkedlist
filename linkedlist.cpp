@@ -142,7 +142,7 @@ bool LinkedList::getNode(int id, Data* returnBox){
 
 void LinkedList::printList(bool direction){
     Node *current = head;
-    int currentCount = 1;
+    int currentCount = PRINTSTART;
     if(head != NULL && !direction){ //forward
         cout << currentCount << ": " <<head->data.id << " : " << head->data.data << endl;
         currentCount++;
@@ -166,7 +166,7 @@ void LinkedList::printList(bool direction){
 }
 
 int LinkedList::getCount(){
-    int nodeCount = 0;
+    int nodeCount = COUNTSTART;
     if(head != NULL){
         nodeCount++;
         Node *current = head;

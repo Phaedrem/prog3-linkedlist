@@ -10,6 +10,9 @@ Purpose: Introduction to Linked Lists
 #include <iostream>
 #include "data.h" 
 
+#define COUNTSTART 0
+#define PRINTSTART 1
+
 using std::cout;
 using std::endl;
 

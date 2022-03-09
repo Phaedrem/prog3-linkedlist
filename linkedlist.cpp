@@ -23,6 +23,14 @@ LinkedList::~LinkedList(){
 PRIVATE
 *********************************/
 
+void LinkedList::findId(int id, Node** currentBox){
+    Node* current = head;
+    while(id != current->data.id && current->next != NULL){
+        current = current->next;
+    }
+    *currentBox = current;
+}
+
 void LinkedList::fillNode(int id, string* info, Node* newNode){
     newNode->data.id = id;
     newNode->data.data = *info;
@@ -90,10 +98,8 @@ bool LinkedList::addNode(int id, string* info){
 bool LinkedList::deleteNode(int id){ 
     bool success = false;
     if(head != NULL){
-        Node *current = head;
-        while(id != current->data.id && current->next != NULL){
-            current = current->next;
-        }
+        Node *current;
+        findId(id, &current);
         if(id == current->data.id && current->prev == NULL && current->next == NULL){ // if theres only one node
             head = NULL;
             delete current;
@@ -120,10 +126,8 @@ bool LinkedList::deleteNode(int id){
 bool LinkedList::getNode(int id, Data* returnBox){
     bool success = false;
     if(head != NULL){
-        Node *current = head;
-        while(id != current->data.id && current->next != NULL){
-            current = current->next;
-        }
+        Node *current;
+        findId(id, &current);
         if(id == current->data.id){
             returnBox->data = current->data.data;
             returnBox->id = current->data.id;
@@ -191,10 +195,8 @@ bool LinkedList::clearList(){
 bool LinkedList::exists(int id){
     bool exists = false;
     if(head != NULL){
-        Node *current = head;
-        while(id != current->data.id && current->next != NULL){
-            current = current->next;
-        }
+        Node *current;
+        findId(id, &current);
         if(id == current->data.id){
             exists = true;
         }

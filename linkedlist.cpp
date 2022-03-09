@@ -142,23 +142,23 @@ bool LinkedList::getNode(int id, Data* returnBox){
 
 void LinkedList::printList(bool direction){
     Node *current = head;
-    int i = 1;
+    int currentCount = 1;
     if(head != NULL && !direction){ //forward
-        cout << i << ": " <<head->data.id << " : " << head->data.data << endl;
-        i++;
+        cout << currentCount << ": " <<head->data.id << " : " << head->data.data << endl;
+        currentCount++;
         while(current = current->next){
-            cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
-            i++;
+            cout << currentCount << ": " <<current->data.id << " : " << current->data.data << endl;
+            currentCount++;
         }
     }else if(head != NULL){ //backward
         while(current->next){
             current = current->next;
         }
-        cout << i << ": " << current->data.id << " : " << current->data.data << endl;
-        i++;
+        cout << currentCount << ": " << current->data.id << " : " << current->data.data << endl;
+        currentCount++;
         while(current = current->prev){
-           cout << i << ": " <<current->data.id << " : " << current->data.data << endl;
-            i++;
+           cout << currentCount << ": " <<current->data.id << " : " << current->data.data << endl;
+            currentCount++;
         }
     }else{
         cout << "List is empty" << endl;

@@ -34,9 +34,9 @@ private:
     Node *head;
 
     void fillNode(int, string*, Node**);
-    void addHead(int, string*, Node*, Node*&);
-    void addTail(int, string*, Node*, Node*&);
-    void addMiddle(int, string*, Node*, Node*&);
+    void addHead(int, string*, Node*, Node*);
+    void addTail(int, string*, Node*, Node*);
+    void addMiddle(int, string*, Node*, Node*);
     void findId(int, Node**);
 
 

@@ -38,7 +38,7 @@ void LinkedList::fillNode(int id, string* info, Node** nodeBox){
     *nodeBox = newNode;
 }
 
-void LinkedList::addHead(int id, string* info, Node* current, Node* &nodeBox){
+void LinkedList::addHead(int id, string* info, Node* current, Node* nodeBox){
     fillNode(id, info, &nodeBox);
     if(current == NULL){
         nodeBox->prev = NULL;
@@ -51,14 +51,14 @@ void LinkedList::addHead(int id, string* info, Node* current, Node* &nodeBox){
     head = nodeBox;
 }
 
-void LinkedList::addTail(int id, string* info, Node* current, Node* &nodeBox){
+void LinkedList::addTail(int id, string* info, Node* current, Node* nodeBox){
     fillNode(id, info, &nodeBox);
     nodeBox->prev = current;
     nodeBox->next = NULL;
     current->next = nodeBox;
 }
 
-void LinkedList::addMiddle(int id, string* info, Node* current, Node* &nodeBox){
+void LinkedList::addMiddle(int id, string* info, Node* current, Node* nodeBox){
     fillNode(id, info, &nodeBox);
     nodeBox->prev = current->prev;
     nodeBox->next = current;
@@ -74,9 +74,9 @@ PUBLIC
 bool LinkedList::addNode(int id, string* info){
     bool success = false;
     if((id > 0) && (info->length() > 0)){
-        Node **nodeBox;
+        Node nodeBox;
         if(head == NULL || (id < head->data.id)){ //New Head
-            addHead(id, info, head, *nodeBox);
+            addHead(id, info, head, &nodeBox);
             success = true; 
         }else{
             Node *current = head;
@@ -84,10 +84,10 @@ bool LinkedList::addNode(int id, string* info){
                 current = current->next;
             }
             if(id > current->data.id && current->next == NULL){ // New Tail
-                addTail(id, info, current,*nodeBox);
+                addTail(id, info, current, &nodeBox);
                 success = true; 
             }else if(id < current->data.id){ // New Middle
-                addMiddle(id, info, current,*nodeBox);
+                addMiddle(id, info, current, &nodeBox);
                 success = true;
             }
         }
